@@ -3,6 +3,7 @@ module.exports = {
         {
             name: "my-money-backend",
             script: "./src/loader.js",
+            instances: "max",
             env: {
                 NODE_ENV: "development",
             },
