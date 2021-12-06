@@ -1,0 +1,58 @@
+### Requer a extensão REST Client
+### https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+@URL = http://localhost:3003/api/billing-cycles
+
+###
+GET {{URL}} HTTP/1.1
+
+###
+GET {{URL}}?skip=0&limit=2 HTTP/1.1
+
+###
+GET {{URL}}/61ada44169a86f2bb4461315 HTTP/1.1
+
+###
+POST {{URL}} HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=Maio/2017
+&month=5
+&year=2017
+&credits[0][name]=Salário Empresa
+&credits[0][value]=7500
+&credits[1][name]=Salário Professor
+&credits[1][value]=1700
+&debts[0][name]=Telefone
+&debts[0][value]=22.9
+&debts[0][status]=PAGO
+&debts[1][name]=Condomínio
+&debts[1][value]=420
+&debts[1][status]=AGENDADO
+
+###
+PUT {{URL}}/61ada44169a86f2bb4461315 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=Fevereiro/2017
+&month=2
+&year=2017
+&credits[0][name]=Salário Empresa
+&credits[0][value]=6500
+&credits[1][name]=Salário Professor
+&credits[1][value]=2700
+&debts[0][name]=Telefone
+&debts[0][value]=86.9
+&debts[0][status]=PAGO
+&debts[1][name]=Condomínio
+&debts[1][value]=430
+&debts[1][status]=AGENDADO
+
+###
+DELETE  {{URL}}/61ada42569a86f2bb4461312 HTTP/1.1
+
+###
+GET {{URL}}/count HTTP/1.1
+
+###
+GET {{URL}}/summary HTTP/1.1
