@@ -16,8 +16,8 @@ GET {{URL}}/61ada44169a86f2bb4461315 HTTP/1.1
 POST {{URL}} HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-name=Maio/2017
-&month=5
+name=Agosto/2017
+&month=8
 &year=2017
 &credits[0][name]=Salário Empresa
 &credits[0][value]=7500
