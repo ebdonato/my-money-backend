@@ -3,18 +3,57 @@
 
 @URL = http://localhost:3003/api/billing-cycles
 
+@OPEN_URL = http://localhost:3003/open-api
+
+###
+POST {{OPEN_URL}}/signup HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Cricano de Tal",
+    "email": "cricano@teste.com.br",
+    "password": "P@ss1234",
+    "confirm_password": "P@ss1234"
+}
+
+###
+# @name signIn
+POST {{OPEN_URL}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "cricano@teste.com.br",
+    "password": "P@ss1234"
+}
+
+###
+
+@token = {{signIn.response.body.token}}
+
+###
+POST {{OPEN_URL}}/validate-token HTTP/1.1
+content-type: application/json
+
+{
+    "token": "{{token}}"
+}
+
 ###
 GET {{URL}} HTTP/1.1
+Authorization: {{token}}
 
 ###
 GET {{URL}}?skip=0&limit=2 HTTP/1.1
+Authorization: {{token}}
 
 ###
 GET {{URL}}/61ada44169a86f2bb4461315 HTTP/1.1
+Authorization: {{token}}
 
 ###
 POST {{URL}} HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
+Authorization: {{token}}
 
 name=Agosto/2017
 &month=8
@@ -33,6 +72,7 @@ name=Agosto/2017
 ###
 PUT {{URL}}/61ada44169a86f2bb4461315 HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
+Authorization: {{token}}
 
 name=Fevereiro/2017
 &month=2
@@ -49,10 +89,13 @@ name=Fevereiro/2017
 &debts[1][status]=AGENDADO
 
 ###
-DELETE  {{URL}}/61ada42569a86f2bb4461312 HTTP/1.1
+DELETE  {{URL}}/61aed61d1156fc592ab408fb HTTP/1.1
+Authorization: {{token}}
 
 ###
 GET {{URL}}/count HTTP/1.1
+Authorization: {{token}}
 
 ###
 GET {{URL}}/summary HTTP/1.1
+Authorization: {{token}}
